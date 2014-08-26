@@ -1,23 +1,18 @@
-%h1 Listing tag_battles
+%h1 My Battles
 
 %table
   %tr
-    %th Tag1
-    %th Tag2
+    %th Battle
     %th Description
-    %th
     %th
     %th
 
   - @tag_battles.each do |tag_battle|
     %tr
-      %td= tag_battle.tag1_id
-      %td= tag_battle.tag2_id
+      %td= link_to "#{tag_battle.tag1.name} vs. #{tag_battle.tag2.name}", tag_battle
       %td= tag_battle.description
-      %td= link_to 'Show', tag_battle
-      %td= link_to 'Edit', edit_tag_battle_path(tag_battle)
-      %td= link_to 'Destroy', tag_battle, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Delete', tag_battle, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Tag battle', new_tag_battle_path
+= link_to 'New HashTag Battle', new_tag_battle_path
