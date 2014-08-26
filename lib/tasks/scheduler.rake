@@ -9,7 +9,7 @@ task :update_counts => :environment do
 
   Hashtag.all.find_in_batches(batch_size: 100) do |hashtags|
 
-    hashtags.each { |hashtag| hashtag.get_tweets }
+    hashtags.each { |hashtag| hashtag.delayed_fetch_tweets }
   end
 
 end

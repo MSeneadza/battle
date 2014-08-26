@@ -7,12 +7,18 @@ class Hashtag < ActiveRecord::Base
 
   before_save :strip_name
 
+  after_create :delayed_fetch_tweets
+
   #scope :all_in_battles, -> { joins(:tag_battles) }
 
   def strip_name
     if /\#/ =~ self.name
       self.name[0] = ''
     end
+  end
+
+  def delayed_fetch_tweets
+    self.delay.get_tweets
   end
 
   def get_tweets
