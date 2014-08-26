@@ -1,15 +1,17 @@
 %p#notice= notice
 
 %p
-  %b Tag1:
-  = @tag_battle.tag1_id
-%p
-  %b Tag2:
-  = @tag_battle.tag2_id
-%p
-  %b Description:
-  = @tag_battle.description
+  %h2= "#{@tag_battle.tag1.name} vs. #{@tag_battle.tag2.name}"
+  %h3= "#{@tag_battle.description}"
+%P
+%table
+  %tr
+    %th= @tag_battle.tag1.name
+    %th= @tag_battle.tag2.name
 
-= link_to 'Edit', edit_tag_battle_path(@tag_battle)
-\|
+    %tr
+      %td= @tag_battle.tag1.mentions_since(@tag_battle.created_at)
+      %td= @tag_battle.tag2.mentions_since(@tag_battle.created_at)
+
+%br
 = link_to 'Back', tag_battles_path

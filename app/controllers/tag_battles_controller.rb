@@ -6,7 +6,7 @@ class TagBattlesController < ApplicationController
   # GET /tag_battles
   # GET /tag_battles.json
   def index
-    @tag_battles = TagBattle.all
+    @tag_battles = current_user.tag_battles.all
   end
 
   # GET /tag_battles/1

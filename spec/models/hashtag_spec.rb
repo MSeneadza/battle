@@ -38,4 +38,15 @@ RSpec.describe Hashtag, :type => :model do
 
     expect(tag1.mentions_since(tag1.created_at)).to eq(2)
   end
+
+  # it 'can find all hashtags which are attached to battles' do
+  #   tag1 = create(:hashtag)
+  #   tag2 = create(:hashtag)
+  #   tag3 = create(:hashtag)
+  #
+  #   battle = create(:tag_battle, tag1: tag1, tag2: tag3)
+  #
+  #   tags_with_battles = Hashtag.all_in_battles
+  #   expect(tags_with_battles.count).to eq(2)
+  # end
 end

@@ -7,7 +7,7 @@ class Hashtag < ActiveRecord::Base
 
   before_save :strip_name
 
-  #scope :mentions_since, -> (battle_started) { mentions.published_since(battle_started).count }
+  #scope :all_in_battles, -> { joins(:tag_battles) }
 
   def strip_name
     if /\#/ =~ self.name
