@@ -16,7 +16,7 @@ class Hashtag < ActiveRecord::Base
   def get_tweets
     client = get_twitter_client
 
-    tweets =  client.search("#haiku since_id:504340862630113280")
+    tweets =  client.search("#haiku since_id:#{most_recent_mention_id}")
 
     tweets.each do |t|
       mention = Mention.where(tweet_id: t.id).first
@@ -26,6 +26,15 @@ class Hashtag < ActiveRecord::Base
                                  message: t.text,
                                  published_at: t.created_at
                                 )
+    end
+  end
+
+  def most_recent_mention_id
+    latest = mentions.most_recent.first
+    if lastest
+      latest.tweet_id
+    else
+      Mention.max_tweet_id
     end
   end
 

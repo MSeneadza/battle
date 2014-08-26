@@ -5,5 +5,9 @@ FactoryGirl.define do
     hashtag
     message "MyString"
     published_at Time.now
+
+    sequence :tweet_id do |n|
+      n
+    end
   end
 end
