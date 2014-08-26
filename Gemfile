@@ -15,6 +15,7 @@ gem 'haml-rails'
 gem 'pg'
 gem 'pundit'
 gem 'simple_form'
+gem 'rails3-jquery-autocomplete', git: 'git://github.com/crowdint/rails3-jquery-autocomplete', branch: 'master'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

@@ -2,8 +2,14 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :tag1_id
-    = f.input :tag2_id
+
+    = label_tag 'Tag 1'
+
+    - @tag_battle.tag1 ? tag1_value = @tag_battle.tag1 : tag1_value = ''
+    = autocomplete_field_tag 'tag_battle[tag1]', '', autocomplete_hashtag_name_tag_battles_path, id_element: '#portfolio_stock_equity_id', value: tag1_value, 'min-length' => 1
+
+
+    = f.input :tag2
     = f.input :description
 
   .form-actions

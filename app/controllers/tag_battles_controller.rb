@@ -1,6 +1,8 @@
 class TagBattlesController < ApplicationController
   before_action :set_tag_battle, only: [:show, :edit, :update, :destroy]
 
+  autocomplete :hashtag, :name
+
   # GET /tag_battles
   # GET /tag_battles.json
   def index
@@ -24,7 +26,10 @@ class TagBattlesController < ApplicationController
   # POST /tag_battles
   # POST /tag_battles.json
   def create
-    @tag_battle = TagBattle.new(tag_battle_params)
+    user = current_user
+    #tag_battle = TagBattle.new(tag_battle_params)
+
+    @tag_battle = TagBattle.create_battle(user, tag_battle_params[:tag1], tag_battle_params[:tag2], tag_battle_params[:description])
 
     respond_to do |format|
       if @tag_battle.save
@@ -69,6 +74,6 @@ class TagBattlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tag_battle_params
-      params.require(:tag_battle).permit(:tag1_id, :tag2_id, :description)
+      params.require(:tag_battle).permit(:tag1, :tag2, :description)
     end
 end
