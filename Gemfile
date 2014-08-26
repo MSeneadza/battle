@@ -16,6 +16,8 @@ gem 'pg'
 gem 'pundit'
 gem 'simple_form'
 gem 'rails3-jquery-autocomplete', git: 'git://github.com/crowdint/rails3-jquery-autocomplete', branch: 'master'
+gem 'twitter'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
@@ -28,6 +30,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  gem 'bullet'
 end
 group :development, :test do
   gem 'factory_girl_rails'
