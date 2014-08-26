@@ -1,0 +1,10 @@
+= simple_form_for(@tag_battle) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :tag1_id
+    = f.input :tag2_id
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

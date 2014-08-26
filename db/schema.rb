@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826123237) do
+ActiveRecord::Schema.define(version: 20140826134429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tag_battles", force: true do |t|
+    t.integer  "user_id",                  null: false
+    t.integer  "tag1_id",                  null: false
+    t.integer  "tag2_id",                  null: false
+    t.string   "description", default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tag_battles", ["tag1_id"], name: "index_tag_battles_on_tag1_id", using: :btree
+  add_index "tag_battles", ["tag2_id"], name: "index_tag_battles_on_tag2_id", using: :btree
+  add_index "tag_battles", ["user_id"], name: "index_tag_battles_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Tag1:
+  = @tag_battle.tag1_id
+%p
+  %b Tag2:
+  = @tag_battle.tag2_id
+%p
+  %b Description:
+  = @tag_battle.description
+
+= link_to 'Edit', edit_tag_battle_path(@tag_battle)
+\|
+= link_to 'Back', tag_battles_path
