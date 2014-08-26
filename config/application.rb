@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'dotenv'
+require 'dotenv' ; Dotenv.load ".env.local", ".env.#{Rails.env}"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,9 +20,6 @@ module Battle
         request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
-
-
-    Dotenv.load
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
