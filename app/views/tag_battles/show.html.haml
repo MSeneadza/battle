@@ -1,17 +1,20 @@
 %p#notice= notice
 
 %p
-  %h2= "#{@tag_battle.tag1.name} vs. #{@tag_battle.tag2.name}"
+  %h2= "#{@tag_battle.tag1.display_name} vs. #{@tag_battle.tag2.display_name}"
   %h3= "#{@tag_battle.description}"
 %P
 %table
   %tr
-    %th= @tag_battle.tag1.name
-    %th= @tag_battle.tag2.name
+    %th= @tag_battle.tag1.display_name
+    %th= @tag_battle.tag2.display_name
 
     %tr
       %td= @tag_battle.tag1.mentions_since(@tag_battle.created_at)
       %td= @tag_battle.tag2.mentions_since(@tag_battle.created_at)
+
+%p
+  %strong= "last updated #{time_ago_in_words(@tag_battle.last_fetched)} ago"
 
 %br
 = link_to 'Back', tag_battles_path

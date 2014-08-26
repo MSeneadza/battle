@@ -21,6 +21,10 @@ class Hashtag < ActiveRecord::Base
     self.delay.get_tweets
   end
 
+  def display_name
+    "##{name}"
+  end
+
   def get_tweets
     client = get_twitter_client
 

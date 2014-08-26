@@ -1,6 +1,6 @@
 class Mention < ActiveRecord::Base
 
-  belongs_to :hashtag
+  belongs_to :hashtag, touch: true
 
   validates_presence_of :hashtag, :tweet_id
 

@@ -14,6 +14,17 @@ class TagBattle < ActiveRecord::Base
     end
   end
 
+  def last_fetched
+    tag1_last_updated = tag1.updated_at
+    tag2_last_updated = tag2.updated_at
+
+    if tag1_last_updated > tag2_last_updated
+      tag1_last_updated
+    else
+      tag2_last_updated
+    end
+  end
+
   def self.create_battle(user, name1, name2, desc)
     tag1 = Hashtag.find_or_create_by(name: name1)
     tag2 = Hashtag.find_or_create_by(name: name2)

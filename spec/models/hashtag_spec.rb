@@ -30,6 +30,13 @@ RSpec.describe Hashtag, :type => :model do
     expect(tag.reload.name).to eq('something')
   end
 
+  it 'adds a pound sign to the name for display' do
+    tag = build(:hashtag, name: '#something')
+    tag.save
+
+    expect(tag.reload.display_name).to eq('#something')
+  end
+
   it 'knows how many times it has been tweeted since a given time' do
     tag1 = create(:hashtag, name: 'Name_1', created_at: 30.hours.ago)
     tweet1 = create(:mention, hashtag: tag1, published_at: 36.hours.ago)
