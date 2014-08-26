@@ -21,4 +21,25 @@ RSpec.describe TagBattle, :type => :model do
     expect(battle).to_not be_valid
   end
 
+  it 'must have different tags for tag1 and tag2' do
+    tag = build(:hashtag)
+    battle = build(:tag_battle, tag1: tag, tag2: tag)
+
+    expect(battle).to_not be_valid
+  end
+
+  it 'creates hashtag 1 if a matching one does not exist' do
+    user = create(:user)
+    battle = TagBattle.create_battle(user, 'abc', 'def', 'some description')
+    tag1 = Hashtag.where(name: 'abc').first
+    expect(tag1.id).to eq(battle.reload.tag1_id)
+  end
+
+  it 'creates hashtag 2 if a matching one does not exist' do
+    user = create(:user)
+    battle = TagBattle.create_battle(user, 'abc', 'def', 'some description')
+    tag2 = Hashtag.where(name: 'def').first
+    expect(tag2.id).to eq(battle.reload.tag2_id)
+  end
+
 end

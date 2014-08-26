@@ -2,6 +2,9 @@
 
 FactoryGirl.define do
   factory :hashtag do
-    name "MyName"
+
+    sequence :name do |n|
+      "hashtag_#{n}"
+    end
   end
 end
