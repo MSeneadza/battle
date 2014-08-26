@@ -19,7 +19,7 @@ gem 'rails3-jquery-autocomplete', git: 'git://github.com/crowdint/rails3-jquery-
 gem 'twitter'
 
 gem 'delayed_job_active_record'
-gem "workless", "~> 1.1.3"
+gem "workless"
 
 group :development do
   gem 'better_errors'
