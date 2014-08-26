@@ -31,7 +31,7 @@ class Hashtag < ActiveRecord::Base
 
   def most_recent_mention_id
     latest = mentions.most_recent.first
-    if lastest
+    if latest
       latest.tweet_id
     else
       Mention.max_tweet_id
