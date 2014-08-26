@@ -6,9 +6,9 @@ class TagBattle < ActiveRecord::Base
 
   validates_presence_of :user, :tag1, :tag2
 
-  validate :tags_must_be_different
+  validate :ensure_tags_differ
 
-  def tags_must_be_different
+  def ensure_tags_differ
     if tag1 && tag2
       errors.add(:tag2, "can't be the same as Tag 1") if tag1.id == tag2.id
     end

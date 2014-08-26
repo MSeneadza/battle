@@ -7,6 +7,8 @@ class Hashtag < ActiveRecord::Base
 
   before_save :strip_name
 
+  #scope :mentions_since, -> (battle_started) { mentions.published_since(battle_started).count }
+
   def strip_name
     if /\#/ =~ self.name
       self.name[0] = ''
@@ -16,7 +18,7 @@ class Hashtag < ActiveRecord::Base
   def get_tweets
     client = get_twitter_client
 
-    tweets =  client.search("#haiku since_id:#{most_recent_mention_id}")
+    tweets =  client.search("##{name} since_id:#{most_recent_mention_id}")
 
     tweets.each do |t|
       mention = Mention.where(tweet_id: t.id).first
@@ -27,6 +29,10 @@ class Hashtag < ActiveRecord::Base
                                  published_at: t.created_at
                                 )
     end
+  end
+
+  def mentions_since(start_time)
+    mentions.published_since(start_time).count
   end
 
   def most_recent_mention_id
