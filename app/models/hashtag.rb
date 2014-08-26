@@ -40,7 +40,7 @@ class Hashtag < ActiveRecord::Base
     if latest
       latest.tweet_id
     else
-      Mention.max_tweet_id
+      Mention.min_tweet_id
     end
   end
 

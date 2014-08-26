@@ -11,4 +11,8 @@ class Mention < ActiveRecord::Base
   def self.max_tweet_id
     maximum(:tweet_id) || 0
   end
+
+  def self.min_tweet_id
+    minimum(:tweet_id) || 0
+  end
 end
