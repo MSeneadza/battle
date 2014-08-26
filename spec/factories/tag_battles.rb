@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :tag_battle do
     user
-    tag1_id 1
-    tag2_id 2
+    association :tag1, factory: :hashtag
+    association :tag2, factory: :hashtag
     description "My Battle"
   end
 end

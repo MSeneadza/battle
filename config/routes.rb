@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :hashtags
+
   resources :tag_battles
 
   root to: 'visitors#index'
