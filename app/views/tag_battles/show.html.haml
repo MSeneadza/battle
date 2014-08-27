@@ -14,7 +14,9 @@
       %td= @tag_battle.tag2.mentions_since(@tag_battle.created_at)
 
 %p
-  %strong= "last updated #{time_ago_in_words(@tag_battle.last_fetched)} ago"
+  = "Since: #{@tag_battle.created_at.strftime("%a, %e %b %Y %H:%M:%S %z")}"
+%p
+  %strong= "last updated #{time_ago_in_words(@tag_battle.last_fetched)} ago -- refreshes approx. every 10 minutes"
 
 %br
 = link_to 'Back', tag_battles_path

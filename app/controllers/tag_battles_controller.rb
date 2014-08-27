@@ -9,7 +9,7 @@ class TagBattlesController < ApplicationController
   # GET /tag_battles
   # GET /tag_battles.json
   def index
-    @tag_battles = current_user.tag_battles.all
+    @tag_battles = current_user.tag_battles.order(:id).page params[:page]
     authorize @tag_battles
   end
 

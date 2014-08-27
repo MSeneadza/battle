@@ -15,5 +15,8 @@
       %td= link_to 'Delete', tag_battle, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
+  = paginate @tag_battles
+%br
 
 = link_to 'New HashTag Battle', new_tag_battle_path
+

@@ -20,6 +20,7 @@ gem 'twitter'
 
 gem 'delayed_job_active_record'
 gem 'workless'
+gem 'kaminari'
 
 group :development do
   gem 'better_errors'
