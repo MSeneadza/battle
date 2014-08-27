@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826222141) do
+ActiveRecord::Schema.define(version: 20140827030652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,13 @@ ActiveRecord::Schema.define(version: 20140826222141) do
   add_index "hashtags", ["name"], name: "index_hashtags_on_name", using: :btree
 
   create_table "mentions", force: true do |t|
-    t.integer  "hashtag_id",             null: false
-    t.string   "message",                null: false
-    t.datetime "published_at",           null: false
+    t.integer  "hashtag_id",                null: false
+    t.string   "message",                   null: false
+    t.datetime "published_at",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tweet_id",     limit: 8, null: false
+    t.integer  "tweet_id",        limit: 8, null: false
+    t.integer  "twitter_user_id", limit: 8
   end
 
   add_index "mentions", ["created_at"], name: "index_mentions_on_created_at", using: :btree
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140826222141) do
   add_index "mentions", ["hashtag_id"], name: "index_mentions_on_hashtag_id", using: :btree
   add_index "mentions", ["published_at"], name: "index_mentions_on_published_at", using: :btree
   add_index "mentions", ["tweet_id"], name: "index_mentions_on_tweet_id", using: :btree
+  add_index "mentions", ["twitter_user_id"], name: "index_mentions_on_twitter_user_id", using: :btree
 
   create_table "tag_battles", force: true do |t|
     t.integer  "user_id",                  null: false

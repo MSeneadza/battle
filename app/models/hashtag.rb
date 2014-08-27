@@ -33,16 +33,18 @@ class Hashtag < ActiveRecord::Base
     tweets.each do |t|
       mention = Mention.where(tweet_id: t.id).first
       next if mention
+      #puts t.methods
       mention = Mention.create(hashtag_id: id,
                                  tweet_id: t.id,
                                  message: t.text,
-                                 published_at: t.created_at
+                                 published_at: t.created_at,
+                                 twitter_user_id: t.user.id
                                 )
     end
   end
 
   def mentions_since(start_time)
-    mentions.published_since(start_time).count
+    mentions.published_since(start_time).by_distinct_users.count
   end
 
   def most_recent_mention_id

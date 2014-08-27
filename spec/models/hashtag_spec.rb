@@ -39,9 +39,9 @@ RSpec.describe Hashtag, :type => :model do
 
   it 'knows how many times it has been tweeted since a given time' do
     tag1 = create(:hashtag, name: 'Name_1', created_at: 30.hours.ago)
-    tweet1 = create(:mention, hashtag: tag1, published_at: 36.hours.ago)
-    tweet2 = create(:mention, hashtag: tag1, published_at: 24.hours.ago)
-    tweet3 = create(:mention, hashtag: tag1, published_at: 2.minutes.ago)
+    tweet1 = create(:mention, hashtag: tag1, published_at: 36.hours.ago, twitter_user_id: 1)
+    tweet2 = create(:mention, hashtag: tag1, published_at: 24.hours.ago, twitter_user_id: 2)
+    tweet3 = create(:mention, hashtag: tag1, published_at: 2.minutes.ago, twitter_user_id: 3)
 
     expect(tag1.mentions_since(tag1.created_at)).to eq(2)
   end
