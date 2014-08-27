@@ -18,3 +18,10 @@
 
 %br
 = link_to 'Back', tag_battles_path
+
+:javascript
+  setInterval("my_function();", 60000);
+
+    function my_function(){
+        window.location = location.href;
+    }
