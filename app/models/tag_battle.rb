@@ -10,7 +10,10 @@ class TagBattle < ActiveRecord::Base
 
   def ensure_tags_differ
     if tag1 && tag2
-      errors.add(:tag2, "can't be the same as Tag 1") if tag1.id == tag2.id
+      if tag1.id == tag2.id
+        self.errors.clear
+        self.errors[:tag2] << "can't be the same as Tag 1"
+      end
     end
   end
 
@@ -26,8 +29,8 @@ class TagBattle < ActiveRecord::Base
   end
 
   def self.create_battle(user, name1, name2, desc)
-    tag1 = Hashtag.find_or_create_by(name: name1)
-    tag2 = Hashtag.find_or_create_by(name: name2)
+    tag1 = Hashtag.find_or_create_by(name: name1) if name1.present?
+    tag2 = Hashtag.find_or_create_by(name: name2) if name2.present?
 
     create(user: user,
            tag1: tag1,
