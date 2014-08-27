@@ -33,7 +33,7 @@ class Hashtag < ActiveRecord::Base
     tweets.each do |t|
       mention = Mention.where(tweet_id: t.id).first
       next if mention
-      #puts t.methods
+      next if t.created_at < self.created_at
       mention = Mention.create(hashtag_id: id,
                                  tweet_id: t.id,
                                  message: t.text,
