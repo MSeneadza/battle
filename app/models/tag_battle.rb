@@ -29,8 +29,8 @@ class TagBattle < ActiveRecord::Base
   end
 
   def self.create_battle(user, name1, name2, desc)
-    tag1 = Hashtag.find_or_create_by(name: name1) if name1.present?
-    tag2 = Hashtag.find_or_create_by(name: name2) if name2.present?
+    tag1 = Hashtag.find_or_create_by(name: name1.strip.downcase) if name1.present?
+    tag2 = Hashtag.find_or_create_by(name: name2.strip.downcase) if name2.present?
 
     create(user: user,
            tag1: tag1,
