@@ -16,6 +16,7 @@ This application requires:
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
+
 Live Version of this App
 -------------------------
 The app is currently [Hosted on Heroku](http://hash-tag-battle.herokuapp.com/).
@@ -28,12 +29,20 @@ Heroku's scheduler so that the rake task update_counts can be scheduled to run e
 You'll need to set the following environment variables:
 
 HEROKU_API_KEY -- for the workless gem
+
 WORKLESS_MAX_WORKERS -- for the workless gem (I have it set to 1)
+
+
 WORKLESS_MIN_WORKERS -- for the workless gem (I have it set to 0)
+
 WORKLESS_WORKERS_RATIO -- for the workless gem (I have it set to 50)
+
 TWITTER_CONSUMER_KEY -- twitter gem
+
 TWITTER_CONSUMER_SECRET -- twitter gem
+
 TWITTER_OAUTH_TOKEN -- twitter gem
+
 TWITTER_OAUTH_TOKEN_SECRET -- twitter gem
 
 
