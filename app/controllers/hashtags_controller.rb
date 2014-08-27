@@ -1,31 +1,38 @@
 class HashtagsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_hashtag, only: [:show, :edit, :update, :destroy]
+
+  after_action :verify_authorized
 
   # GET /hashtags
   # GET /hashtags.json
   def index
     @hashtags = Hashtag.all
+    authorize @hashtags
   end
 
   # GET /hashtags/1
   # GET /hashtags/1.json
   def show
+    authorize @hashtag
   end
 
   # GET /hashtags/new
   def new
     @hashtag = Hashtag.new
+    authorize @hashtag
   end
 
   # GET /hashtags/1/edit
   def edit
+    authorize @hashtag
   end
 
   # POST /hashtags
   # POST /hashtags.json
   def create
     @hashtag = Hashtag.new(hashtag_params)
-
+    authorize @hashtag
     respond_to do |format|
       if @hashtag.save
         format.html { redirect_to @hashtag, notice: 'Hashtag was successfully created.' }
@@ -40,6 +47,7 @@ class HashtagsController < ApplicationController
   # PATCH/PUT /hashtags/1
   # PATCH/PUT /hashtags/1.json
   def update
+    authorize @hashtag
     respond_to do |format|
       if @hashtag.update(hashtag_params)
         format.html { redirect_to @hashtag, notice: 'Hashtag was successfully updated.' }
@@ -54,6 +62,7 @@ class HashtagsController < ApplicationController
   # DELETE /hashtags/1
   # DELETE /hashtags/1.json
   def destroy
+    authorize @hashtag
     @hashtag.destroy
     respond_to do |format|
       format.html { redirect_to hashtags_url, notice: 'Hashtag was successfully destroyed.' }

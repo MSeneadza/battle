@@ -3,13 +3,13 @@
 
   .form-inputs
 
-    = label_tag 'Tag 1'
+    = label_tag 'Hashtag 1'
 
     - @tag_battle.tag1 ? tag1_value = @tag_battle.tag1 : tag1_value = ''
     = autocomplete_field_tag 'tag_battle[tag1]', '', autocomplete_hashtag_name_tag_battles_path, id_element: '#portfolio_stock_equity_id', value: tag1_value, 'min-length' => 1
 
 
-    = label_tag 'Tag 2'
+    = label_tag 'Hashtag 2'
 
     - @tag_battle.tag2 ? tag2_value = @tag_battle.tag2 : tag2_value = ''
     = autocomplete_field_tag 'tag_battle[tag2]', '', autocomplete_hashtag_name_tag_battles_path, id_element: '#portfolio_stock_equity_id', value: tag2_value, 'min-length' => 1
@@ -17,4 +17,4 @@
     = f.input :description
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, 'Create New Battle'

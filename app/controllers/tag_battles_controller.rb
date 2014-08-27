@@ -1,5 +1,8 @@
 class TagBattlesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tag_battle, only: [:show, :edit, :update, :destroy]
+
+  after_action :verify_authorized
 
   autocomplete :hashtag, :name
 
@@ -7,16 +10,19 @@ class TagBattlesController < ApplicationController
   # GET /tag_battles.json
   def index
     @tag_battles = current_user.tag_battles.all
+    authorize @tag_battles
   end
 
   # GET /tag_battles/1
   # GET /tag_battles/1.json
   def show
+    authorize @tag_battle
   end
 
   # GET /tag_battles/new
   def new
     @tag_battle = TagBattle.new
+    authorize @tag_battle
   end
 
   # GET /tag_battles/1/edit
@@ -30,7 +36,7 @@ class TagBattlesController < ApplicationController
     #tag_battle = TagBattle.new(tag_battle_params)
 
     @tag_battle = TagBattle.create_battle(user, tag_battle_params[:tag1], tag_battle_params[:tag2], tag_battle_params[:description])
-
+    authorize @tag_battle
     respond_to do |format|
       if @tag_battle.save
         format.html { redirect_to @tag_battle, notice: 'Tag battle was successfully created.' }
@@ -45,6 +51,7 @@ class TagBattlesController < ApplicationController
   # PATCH/PUT /tag_battles/1
   # PATCH/PUT /tag_battles/1.json
   def update
+    authorize @tag_battle
     respond_to do |format|
       if @tag_battle.update(tag_battle_params)
         format.html { redirect_to @tag_battle, notice: 'Tag battle was successfully updated.' }
@@ -59,6 +66,7 @@ class TagBattlesController < ApplicationController
   # DELETE /tag_battles/1
   # DELETE /tag_battles/1.json
   def destroy
+    authorize @tag_battle
     @tag_battle.destroy
     respond_to do |format|
       format.html { redirect_to tag_battles_url, notice: 'Tag battle was successfully destroyed.' }
