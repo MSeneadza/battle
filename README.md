@@ -55,6 +55,6 @@ delayed_job so that the tweets can be pulled from Twitter.  The workless gem kee
 up the appropriate number of background workers when there are jobs in the queue.  When there are no jobs in the queue
 workless will kill the final worker, thereby saving on Heroku server costs.
 
-The heroku scheduler (think of it as a cron job) schedules tweets to be pulled every 10 minutes)
+The heroku scheduler (think of it as a cron job) schedules tweets to be pulled every 10 minutes.
 
 
